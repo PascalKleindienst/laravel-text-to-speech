@@ -10,7 +10,7 @@ use PascalKleindienst\LaravelTextToSpeech\LaravelTextToSpeechServiceProvider;
 
 class TestCase extends Orchestra
 {
-    public function getEnvironmentSetUp($app)
+    public function defineEnvironment($app)
     {
         config()->set('database.default', 'testing');
 
