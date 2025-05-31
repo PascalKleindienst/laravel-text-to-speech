@@ -61,7 +61,7 @@
         "test:lint": [
             "vendor/bin/pint --test"
         ],
-        "test:unit": "vendor/bin/pest --parallel",
+        "test:unit": "vendor/bin/pest --parallel --coverage --min=90",
         "test:types": "vendor/bin/phpstan analyse",
         "test": [
             "@test:lint",

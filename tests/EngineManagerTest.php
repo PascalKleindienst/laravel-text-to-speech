@@ -1,0 +1,36 @@
+<?php
+
+declare(strict_types=1);
+
+use PascalKleindienst\LaravelTextToSpeech\EngineManager;
+use PascalKleindienst\LaravelTextToSpeech\Engines\Engine;
+use PascalKleindienst\LaravelTextToSpeech\Engines\NullEngine;
+
+it('has a default driver', function () {
+    expect(app(EngineManager::class)->getDefaultDriver())->toBe('null');
+});
+
+it('can create an engine', function () {
+    expect(app(EngineManager::class)->engine('null'))->toBeInstanceOf(Engine::class);
+});
+
+it('can create a null engine', function () {
+    expect(app(EngineManager::class)->createNullDriver())->toBeInstanceOf(NullEngine::class);
+});
+
+it('can be extended', function () {
+    $customEngine = new class extends Engine
+    {
+        public function synthesize(string $text): string
+        {
+            return $text;
+        }
+    };
+
+    app()->resolving(
+        EngineManager::class,
+        fn (EngineManager $manager) => $manager->extend('test', fn () => new $customEngine())
+    );
+
+    expect(app(EngineManager::class)->engine('test'))->toBeInstanceOf($customEngine::class);
+});
