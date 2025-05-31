@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Google\Cloud\TextToSpeech\V1\SynthesizeSpeechResponse;
 use PascalKleindienst\LaravelTextToSpeech\Engines\GoogleEngine;
 use PascalKleindienst\LaravelTextToSpeech\Facades\GoogleTTS;

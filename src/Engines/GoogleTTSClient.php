@@ -13,6 +13,7 @@ class GoogleTTSClient
 
     /**
      * @return TextToSpeechClient
+     *
      * @throws ValidationException
      */
     public function getClient(): mixed
