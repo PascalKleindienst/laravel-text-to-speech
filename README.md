@@ -68,14 +68,14 @@ return [
 
 When using the system driver, you need to install the following packages:
 
-- [espeak-ng](https://espeak-ng.org/)
+- [espeak-ng](https://github.com/espeak-ng/espeak-ng)
 
 #### Google Driver
 
 When using the google driver, you need to install the following packages:
 
 ```bash
-composer require google/cloud-text-to-speech"
+composer require google/cloud-text-to-speech
 ```
 
 ## 💻 Usage
@@ -91,7 +91,7 @@ TextToSpeech::convert('Hello World!');
 TextToSpeech::convert('Hello World!')->save('path/to/file.mp3'); 
 
 // Store the converted text on a different disk
-TextToSpeech::from(Source::File)->disk('s3')->convert('path/to/file.txt');
+TextToSpeech::convert('Hello World!')->disk('s3')->save('path/to/file.txt');
 
 // convert text from a file
 TextToSpeech::from(Source::File)->convert('path/to/file.txt');
