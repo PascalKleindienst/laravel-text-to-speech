@@ -46,7 +46,6 @@ it('can convert text to a speech result', function () {
         ->and(Storage::get($result->file))->toBe('got called');
 });
 
-
 it('can get the text from a source', function (Source $source, string $data, string $result) {
     expect($this->testEngine->from($source)->getTextFromSource($data))->toBe($result);
 })->with([

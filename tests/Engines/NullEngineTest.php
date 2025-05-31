@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use PascalKleindienst\LaravelTextToSpeech\Engines\NullEngine;
 use PascalKleindienst\LaravelTextToSpeech\Facades\TextToSpeech;
 use PascalKleindienst\LaravelTextToSpeech\SpeechResult;

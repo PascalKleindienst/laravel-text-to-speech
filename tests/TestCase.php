@@ -10,6 +10,15 @@ use PascalKleindienst\LaravelTextToSpeech\LaravelTextToSpeechServiceProvider;
 
 class TestCase extends Orchestra
 {
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        Factory::guessFactoryNamesUsing(
+            fn (string $modelName) => 'PascalKleindienst\\LaravelTextToSpeech\\Database\\Factories\\'.class_basename($modelName).'Factory'
+        );
+    }
+
     public function defineEnvironment($app)
     {
         config()->set('database.default', 'testing');
@@ -19,15 +28,6 @@ class TestCase extends Orchestra
             (include $migration->getRealPath())->up();
          }
          */
-    }
-
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'PascalKleindienst\\LaravelTextToSpeech\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
     }
 
     protected function getPackageProviders($app)
