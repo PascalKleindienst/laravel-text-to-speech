@@ -28,10 +28,4 @@ final class SpeechResult
 
         return $this;
     }
-
-    public function stream(): self
-    {
-        // TODO
-        return $this;
-    }
 }
