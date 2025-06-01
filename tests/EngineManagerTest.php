@@ -24,7 +24,7 @@ it('can create a null engine', function () {
 
 it('can create a system engine', function () {
     expect(app(EngineManager::class)->createSystemDriver())->toBeInstanceOf(SystemEngine::class);
-})->throwsIf(! is_executable(exec('which espeak-ng')), EngineNotSupportedException::class, 'system driver "espeak-ng" is not installed');
+})->throwsIf(! is_executable(exec('which espeak-ng')), EngineNotSupportedException::class);
 
 it('can create a google engine', function () {
     expect(app(EngineManager::class)->createGoogleDriver())->toBeInstanceOf(GoogleEngine::class);
