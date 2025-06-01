@@ -6,6 +6,7 @@ namespace PascalKleindienst\LaravelTextToSpeech\Engines;
 
 use Aws\Credentials\Credentials;
 use Aws\Polly\PollyClient;
+
 use function mb_strlen;
 
 final class PollyEngine extends Engine
