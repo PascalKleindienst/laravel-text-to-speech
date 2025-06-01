@@ -25,4 +25,4 @@ it('fails when there is an error with espeak-ng', function () {
     $result = Process::result('failed', 'error', 1);
     Process::shouldReceive('run')->once()->andReturn($result);
     expect(static fn () => TextToSpeech::engine('system')->convert('test'))->toThrow(RuntimeException::class);
-});
+})->skip(! is_executable(exec('which espeak-ng')), 'system driver "espeak-ng" is not installed');
