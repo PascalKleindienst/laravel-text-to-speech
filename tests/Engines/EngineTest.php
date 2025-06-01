@@ -54,6 +54,18 @@ it('can get the text from a source', function (Source $source, string $data, str
 '],
 ]);
 
+it('can get the file path', function () {
+    expect($this->testEngine->getFilePath('foo'))->toBe(
+        config('text-to-speech.audio.path', 'audio').DIRECTORY_SEPARATOR.md5('foo').'.mp3'
+    );
+});
+
+it('can get the full file path', function () {
+    expect($this->testEngine->getFullPath('foo'))->toBe(
+        Storage::disk(config('text-to-speech.audio.disk'))->path(config('text-to-speech.audio.path', 'audio').DIRECTORY_SEPARATOR.md5('foo').'.mp3')
+    );
+});
+
 it('can set the voice', function () {
     expect($this->testEngine->voice('John Doe')->getVoice())->toBe('John Doe');
 });

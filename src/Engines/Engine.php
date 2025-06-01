@@ -42,6 +42,27 @@ abstract class Engine
         return $data;
     }
 
+    public function getFilePath(string $text, ?string $data = null): string
+    {
+        $filename = $this->getDefaultPath().DIRECTORY_SEPARATOR.$this->getDefaultFilename($text, $data);
+
+        if (! $this->hasExtension($filename)) {
+            $filename .= '.'.$this->getExtension();
+        }
+
+        return $filename;
+    }
+
+    public function getDefaultPath(): string
+    {
+        return config('text-to-speech.audio.path', 'audio');
+    }
+
+    public function getDefaultFilename(string $text, ?string $data = null): string
+    {
+        return md5($text);
+    }
+
     public function from(Source $source): self
     {
         $this->source = $source;
@@ -63,28 +84,18 @@ abstract class Engine
         return $this;
     }
 
+    public function getFullPath(string $text, ?string $data = null): string
+    {
+        return Storage::disk(config('text-to-speech.audio.disk'))->path($this->getFilePath($text, $data));
+    }
+
     protected function storeResult(string $text, ?string $data): string
     {
-        // Get Path
-        $filename = $this->getDefaultPath().DIRECTORY_SEPARATOR.$this->getDefaultFilename($text, $data);
-
-        if (! $this->hasExtension($filename)) {
-            $filename .= '.'.$this->getExtension();
-        }
+        $filename = $this->getFilePath($text, $data);
 
         Storage::disk(config('text-to-speech.audio.disk'))->put($filename, $data ?? '');
 
         return $filename;
-    }
-
-    protected function getDefaultPath(): string
-    {
-        return config('text-to-speech.audio.path', 'audio');
-    }
-
-    protected function getDefaultFilename(string $text, ?string $data): string
-    {
-        return md5($text);
     }
 
     protected function hasExtension(string $filename): bool
