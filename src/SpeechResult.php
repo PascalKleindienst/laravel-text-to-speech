@@ -17,7 +17,7 @@ final class SpeechResult
 
     public function save(string $path): self
     {
-        Storage::disk($this->disk)->put($path, Storage::disk(config('text-to-speech.audio.disk'))->get($this->file));
+        Storage::disk($this->disk)->put($path, Storage::disk(config('text-to-speech.audio.disk'))->get($this->file) ?? '');
 
         return $this;
     }

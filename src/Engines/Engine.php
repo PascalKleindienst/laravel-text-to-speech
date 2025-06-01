@@ -36,7 +36,7 @@ abstract class Engine
     public function getTextFromSource(string $data): string
     {
         if ($this->source === Source::File && is_readable($data)) {
-            return file_get_contents($data);
+            return file_get_contents($data) ?: '';
         }
 
         return $data;

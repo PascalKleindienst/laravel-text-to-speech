@@ -26,7 +26,7 @@ final class PollyEngine extends Engine
         ]));
     }
 
-    public function synthesize(string $text): ?string
+    public function synthesize(string $text): string
     {
         $chunks = [$text];
 

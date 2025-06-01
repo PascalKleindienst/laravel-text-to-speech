@@ -18,7 +18,7 @@ final class GoogleEngine extends Engine
         return new self();
     }
 
-    protected function synthesize(string $text): ?string
+    protected function synthesize(string $text): string
     {
         $voice = new VoiceSelectionParams([
             'language_code' => $this->language ?? config('text-to-speech.language'),

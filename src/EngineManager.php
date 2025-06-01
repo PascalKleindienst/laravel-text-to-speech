@@ -95,7 +95,8 @@ final class EngineManager extends Manager
      */
     private function ensureSystemDriverIsInstalled(): void
     {
-        if (! is_executable(exec('which espeak-ng'))) {
+        $espeakNg = exec('which espeak-ng');
+        if ($espeakNg === false || ! is_executable($espeakNg)) {
             throw new EngineNotSupportedException('Please install the suggessted system driver: espeak-ng');
         }
     }
