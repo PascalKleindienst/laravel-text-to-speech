@@ -7,7 +7,7 @@ use PascalKleindienst\LaravelTextToSpeech\Exceptions\EngineNotSupportedException
 use PascalKleindienst\LaravelTextToSpeech\Facades\TextToSpeech;
 
 it('fails when the engine is not supported', function () {
-    expect(TextToSpeech::engine('system'))->toThrow(EngineNotSupportedException::class);
+    expect(static fn () => TextToSpeech::engine('system'))->toThrow(EngineNotSupportedException::class);
 })->skip(is_executable(exec('which espeak-ng')));
 
 it('can create the system engine', function () {
